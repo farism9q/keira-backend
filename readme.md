@@ -1,11 +1,16 @@
 # Keira backend
 
-This is keira backend.
-It provides authenticaion, email sending, user and car deletion
+This is keira app backend.
+It provides authenticaion, handling user and car deletion and email sending
 
-## Getting Started
+## Table of contents
 
-### Dependencies
+- [Dependencies](#dependencies)
+- [Prerequisites](#prerequisites)
+- [Setup](#Setup)
+- [Setting up `config.env`](#setting_up_`config.env`)
+
+## Dependencies
 
 - `express`: Web application framework for Node.js.
 - `mongoose`: MongoDB object modeling tool.
@@ -20,23 +25,42 @@ It provides authenticaion, email sending, user and car deletion
 - `validator`: For data validation and used for validating email.
 - `html-to-text`: Convert HTML content to plain text.
 
-### Prerequisites
+## Prerequisites
 
 Before you clone and set up this project, make sure you have the following dependencies installed on your system:
 
 - Node.js (v18.16.1)
 - Nodemon (v2.0.19)
 
-### Installing
+## Setup
 
-- npm install firebase-admin --save
+1. Install all packages used in this project by running:
 
-### Setting up "config.env"
+- With yarn:
+
+```
+yarn install
+```
+
+- With npm:
+
+```
+npm install
+```
+
+2. Install the Firebase Admin SDK to handle user deletions
+
+```
+npm install firebase-admin --save
+```
+
+3. Setting up `config.env`
 
 This project uses a `config.env` file to store sensitive information and environment variables. This file is crucial for the proper functioning of the application.
 
-#### Environment Variables
+##### Environment Variables
 
+```plaintext
 NODE_ENV=development or production
 PORT=any_port_number
 DATABASE_USERNAME=your_mongoDB_username
@@ -45,36 +69,33 @@ DATABASE_CONNECTION=your_mongoDB_connection
 
 FIREBASE_ADMIN_FILENAME=your_firebase_admin_information (It's json file)
 
-##### This information is provided by mailtrap in order to test the email sending functionality and having a look at the emails
-
+# Mailtrap Configuration
 EMAIL_USERNAME=mailtrap_username
 EMAIL_PASSWORD=mailtrap_password
 EMAIL_HOST=sandbox.smtp.mailtrap.io
 EMAIL_PORT=2525
 
-##### This should be replaced with the app email
-
+# App Email Configuration
 EMAIL_FROM=email where you want to get users emails
 
-##### This information is provided by sendgrid in order to send (REAL) emails to the users
+# SendGrid Configuration
+SENDGRID_USERNAME=sendgrid_username
+SENDGRID_PASSWORD=sendgrid_password
 
-SENDGRID_USERNAME=sandgrid_username
-SENDGRID_PASSWORD=sandgrid_password
-
-##### This information is for the JWT token needed for autherization. Only the admin can call the protected routes (delete car, send email)
-
+# JWT Configuration
 JWT_SECRET=any_jwt_secret
-JWT_EXPIRES_IN= when_should_jwt_expires (ex: 1d)
+JWT_EXPIRES_IN=when_should_jwt_expires (ex: 1d)
+```
 
-### Executing program
+## Executing program
 
-- How to run the program for development:
+- To run the program for development:
 
 ```
 npm start
 ```
 
-- How to run the program for production:
+- To run the program for production:
 
 ```
 npm run start:prod
