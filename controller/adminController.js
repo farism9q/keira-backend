@@ -39,7 +39,7 @@ exports.deleteKeiraUser = async (req, res, next) => {
         status: "fail",
         message: "User not found",
       });
-    } else  {
+    } else {
       res.status(400).json({
         status: "fail",
         message: err,
