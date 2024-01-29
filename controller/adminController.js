@@ -1,5 +1,5 @@
 const Email = require("../utils/email");
-const auth = require("../firebaseAdmin");
+const auth = require("../config/firebaseAdmin");
 
 exports.sendEmail = async (req, res, next) => {
   try {

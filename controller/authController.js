@@ -15,9 +15,15 @@ const createSendToken = function(admin, status, res) {
   // Remove password from output
   admin.password = undefined;
 
+  // The date where the token will expire
+  const tokenExpiresIn = new Date(
+    Date.now() + 1000 * 60 * 60 * 24 * parseInt(process.env.JWT_EXPIRES_IN)
+  );
+
   res.status(status).json({
     status: "success",
     token,
+    tokenExpiresIn,
     data: {
       admin,
     },

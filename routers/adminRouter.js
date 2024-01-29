@@ -10,9 +10,11 @@ adminRouter.use(authController.protect);
 
 adminRouter.get("/logout", authController.logout);
 
-// Will be a good idea to add a route to check if the admin is allowed to access a certain route or not (some functions like delete a car doesn't check if the admin is allowed)
-// Because deleting a car is done in firestore and we can delete the car without checking the admin role, which we don't want,
-// so this route will called in the front-end before deleting a car. Before hitting this route, we will check if the user is logged in or not + if the role is admin or not
+// Will be a good idea to add a route to check if the admin is allowed to access a certain
+// route or not because some functions like "delete a car" doesn't check if the admin is allowed.
+// Because deleting a car is done in firestore and we can delete the car without checking the admin's role, which we don't want
+// So this route will be called in the front-end before deleting a car. Before hitting this route, we will check if
+// the user is logged in or not + if the role is admin or not
 adminRouter.get(
   "/checkRole",
   authController.restrictTo("admin"),

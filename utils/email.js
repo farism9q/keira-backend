@@ -51,10 +51,9 @@ module.exports = class Email {
       to: this.to,
       subject,
       html,
-      text: htmlToText.htmlToText(html), //advFeatures some people prefer only text, so we should fill their needs and convert html to text
+      text: htmlToText.htmlToText(html), // some people prefer only text, so we should fill their needs and convert html to text
     };
 
-    console.log(mailOptions.from);
 
     // 3) Create a transport and send email
     await this.newTransport().sendMail(mailOptions);
