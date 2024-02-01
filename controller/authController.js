@@ -31,19 +31,16 @@ const createSendToken = function(admin, status, res) {
 };
 
 exports.signup = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { name, email, password, role } = req.body;
 
   try {
     const newAdmin = await Admin.create({
+      name,
       email, // email: email
       password,
+      role,
     });
-    res.status(201).json({
-      status: "success",
-      data: {
-        admin: newAdmin,
-      },
-    });
+    createSendToken(newAdmin, 201, res);
   } catch (err) {
     res.status(400).json({
       status: "fail",

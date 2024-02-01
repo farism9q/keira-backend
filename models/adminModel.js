@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 
 const adminSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "Please provide your name"],
+  },
   email: {
     type: String,
     required: [true, "Please provide your email"],
@@ -17,7 +21,7 @@ const adminSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    required: false,
+    required: [true, "The role must be defined"],
   },
 });
 
