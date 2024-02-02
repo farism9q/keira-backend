@@ -4,10 +4,15 @@ const authController = require("../controller/authController");
 
 const adminRouter = express.Router();
 
-adminRouter.post("/signup", authController.signup);
 adminRouter.post("/login", authController.login);
 adminRouter.use(authController.protect);
 
+// Only admin with "admin" role can create admins, otherwise is not allowed
+adminRouter.post(
+  "/signup",
+  authController.restrictTo("admin"),
+  authController.signup
+);
 adminRouter.get("/logout", authController.logout);
 
 // Will be a good idea to add a route to check if the admin is allowed to access a certain
